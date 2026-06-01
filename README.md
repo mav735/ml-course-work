@@ -11,6 +11,8 @@ Grad-CAM).
 
 - Выбор любых 2 классов из пула и сбор датасета через рисование фигурами
   (прямоугольник, круг, эллипс, треугольник, линия — drag / resize / rotate).
+- Мобильная модерация новых рисунков через `/moderate`: вход по секретному
+  ключу и принятие/отклонение свайпом вправо/влево.
 - Конфигурируемая архитектура CNN (добавление/удаление conv- и pool-слоёв) и
   обучение в браузере без сервера для вычислений.
 - Визуализации обученной модели:
@@ -70,6 +72,9 @@ Grad-CAM).
 | `nickname`   | varchar(50)    | автор рисунка                             |
 | `shapes`     | JSONB          | исходные фигуры (для воспроизведения)      |
 | `png`        | bytea          | растеризованный PNG                        |
+| `moderation_status` | varchar(20) | `pending`, `approved` или `rejected` |
+| `reviewed_by` | varchar(50)   | кто выполнил модерацию                     |
+| `reviewed_at` | timestamptz   | время модерации                            |
 | `created_at` | timestamptz    | `now()` по умолчанию                       |
 
 ## REST API
@@ -79,8 +84,11 @@ Grad-CAM).
 | GET   | `/api/health`                   | health-check                              |
 | GET   | `/api/labels`                   | пул доступных классов                     |
 | GET   | `/api/drawings/stats`           | счётчики рисунков по классам              |
-| GET   | `/api/drawings?label=X&limit=N` | рисунки класса (PNG в base64)             |
-| POST  | `/api/drawings`                 | сохранить рисунок                         |
+| GET   | `/api/drawings?label=X&limit=N` | одобренные рисунки класса (PNG в base64)  |
+| POST  | `/api/drawings`                 | сохранить рисунок на модерацию            |
+| GET   | `/api/drawings/moderation`      | новые рисунки, требует `X-Secret-Key`     |
+| GET   | `/api/drawings/moderation/stats` | счётчик новых рисунков, требует `X-Secret-Key` |
+| PATCH | `/api/drawings/{id}/moderation` | принять/отклонить рисунок, требует `X-Secret-Key` |
 
 Тело `POST /api/drawings`:
 
@@ -107,6 +115,7 @@ docker compose up --build
 - Frontend → <http://localhost:5173>
 - Backend / OpenAPI → <http://localhost:8000/docs>
 - PostgreSQL → `localhost:${POSTGRES_PORT}` (по умолчанию `postgres` / `postgres`)
+- Модерация → <http://localhost:5173/moderate> (`MODERATION_SECRET_KEY` из `.env`)
 
 Миграции применяются автоматически при старте backend-контейнера
 (`alembic upgrade head`).

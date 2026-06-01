@@ -22,6 +22,23 @@ class DrawingCreated(BaseModel):
     id: int
 
 
+class ModerationDrawingOut(DrawingOut):
+    moderation_status: str
+
+
+class DrawingModerationUpdate(BaseModel):
+    decision: str = Field(pattern="^(approve|reject)$")
+
+
+class DrawingModerationResult(BaseModel):
+    id: int
+    moderation_status: str
+
+
+class ModerationStatsOut(BaseModel):
+    pending: int
+
+
 class LabelsOut(BaseModel):
     labels: list[str]
 

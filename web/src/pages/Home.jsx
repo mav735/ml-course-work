@@ -150,6 +150,12 @@ export default function Home() {
           <div className="text-slate-600 text-[10px] uppercase tracking-[0.25em]">
             TensorFlow.js · React · FastAPI · PostgreSQL
           </div>
+          <button
+            onClick={() => navigate('/moderate')}
+            className="text-slate-500 hover:text-slate-300 text-xs transition-colors"
+          >
+            Модерация
+          </button>
         </footer>
       </div>
     </div>
