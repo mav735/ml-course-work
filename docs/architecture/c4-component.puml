@@ -1,0 +1,21 @@
+@startuml
+!include <C4/C4_Component>
+
+LAYOUT_TOP_DOWN()
+
+title Компоненты — браузерный ML-модуль (SPA)
+
+Component(client, "api/client.js", "fetch", "HTTP-клиент backend")
+Component(dataset, "dataset.js", "JS", "Сборка датасета из PNG")
+Component(model, "model.js", "TensorFlow.js", "Построение и обучение CNN")
+Component(acts, "activations.js", "TensorFlow.js", "Карты активаций, top-K")
+Component(grad, "gradcam.js", "TensorFlow.js", "Grad-CAM")
+Component(cmap, "colormap.js", "JS", "Раскраска карт в цвет")
+
+Rel(client, dataset, "PNG рисунков")
+Rel(dataset, model, "Тензоры")
+Rel(model, acts, "Слои")
+Rel(model, grad, "Слои")
+Rel(acts, cmap, "Значения")
+Rel(grad, cmap, "Значения")
+@enduml

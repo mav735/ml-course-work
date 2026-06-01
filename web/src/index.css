@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  h1, h2, h3 {
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .section-card {
+    @apply bg-slate-900 border border-slate-800 rounded-md p-6 mb-5;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset;
+  }
+
+  .section-title {
+    @apply text-base font-semibold text-slate-100 mb-4 flex items-center gap-2 uppercase tracking-wider;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-700 disabled:text-slate-500 disabled:cursor-not-allowed
+           text-white font-medium py-2 px-4 rounded-sm transition-colors text-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-800 hover:bg-slate-700 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed
+           border border-slate-700 text-slate-200 font-medium py-2 px-4 rounded-sm transition-colors text-sm;
+  }
+
+  .btn-danger {
+    @apply bg-slate-800 hover:bg-red-900 border border-slate-700 hover:border-red-800
+           text-slate-200 hover:text-red-100 font-medium py-1 px-3 rounded-sm transition-colors text-sm;
+  }
+
+  .input-field {
+    @apply bg-slate-950 border border-slate-700 text-slate-100 rounded-sm px-3 py-2
+           focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-600
+           transition-colors;
+  }
+
+  .label-text {
+    @apply text-xs font-medium text-slate-400 mb-1.5 block uppercase tracking-wide;
+  }
+
+  .tab-active {
+    @apply bg-indigo-600 text-white border border-indigo-500;
+  }
+
+  .tab-inactive {
+    @apply bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700;
+  }
+
+  .accent-rule {
+    @apply h-px bg-gradient-to-r from-indigo-700 via-indigo-600/40 to-transparent;
+  }
+}
+
+.pixelated, img.pixelated, canvas.pixelated {
+  image-rendering: pixelated;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0b0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d2d33;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #42424a;
+}

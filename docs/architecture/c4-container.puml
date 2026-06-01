@@ -1,0 +1,21 @@
+@startuml
+!include <C4/C4_Container>
+
+LAYOUT_LEFT_RIGHT()
+
+title Контейнеры — CNN Drawings Visualizer
+
+Person(user, "Пользователь", "Браузер")
+
+System_Boundary(sys, "CNN Drawings Visualizer") {
+  Container(spa, "SPA", "React + TensorFlow.js", "Рисование, обучение и визуализация CNN в браузере")
+  Container(web, "Web-сервер", "nginx", "Статика SPA и reverse-proxy /api")
+  Container(api, "Backend API", "FastAPI", "REST: классы, статистика, рисунки")
+  ContainerDb(db, "База данных", "PostgreSQL", "drawings: фигуры JSONB + PNG")
+}
+
+Rel(user, web, "Открывает", "HTTPS")
+Rel(spa, web, "Запросы /api/*", "JSON/HTTP")
+Rel(web, api, "proxy_pass", "HTTP")
+Rel(api, db, "Чтение/запись", "SQL")
+@enduml

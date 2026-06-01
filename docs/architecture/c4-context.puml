@@ -1,0 +1,12 @@
+@startuml
+!include <C4/C4_Context>
+
+LAYOUT_LEFT_RIGHT()
+
+title Системный контекст — CNN Drawings Visualizer
+
+Person(user, "Пользователь", "Рисует классы фигурами, обучает и изучает CNN")
+System(app, "CNN Drawings Visualizer", "Сбор датасета рисунками, обучение и визуализация CNN в браузере")
+
+Rel(user, app, "Использует", "HTTP")
+@enduml
