@@ -121,7 +121,7 @@ export default function Home() {
                   }`}
                 >
                   <div className="text-3xl">{meta.icon}</div>
-                  <div className="font-semibold text-white mt-2">{meta.ru}</div>
+                  <div className="font-semibold text-slate-100 mt-2">{meta.ru}</div>
                   <div className="text-xs text-slate-400 mt-1">
                     {count} {pluralize(count, ['рисунок', 'рисунка', 'рисунков'])}
                   </div>

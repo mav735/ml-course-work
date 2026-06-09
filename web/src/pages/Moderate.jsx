@@ -149,7 +149,7 @@ export default function Moderate() {
           <div className="text-[11px] uppercase tracking-[0.2em] text-indigo-400 font-medium">
             Модерация датасета
           </div>
-          <h1 className="text-2xl font-semibold text-white mt-2">Секретный ключ</h1>
+          <h1 className="text-2xl font-semibold text-slate-100 mt-2">Секретный ключ</h1>
           <div className="mt-5">
             <label className="label-text" htmlFor="moderation-key">Ключ доступа</label>
             <input
@@ -182,7 +182,7 @@ export default function Moderate() {
               <div className="text-[11px] uppercase tracking-[0.2em] text-indigo-400 font-medium">
                 Модерация
               </div>
-              <h1 className="text-xl font-semibold text-white mt-1">Новые картинки</h1>
+              <h1 className="text-xl font-semibold text-slate-100 mt-1">Новые картинки</h1>
             </div>
             <button onClick={handleLogout} className="btn-secondary px-3 py-2">
               Выйти
@@ -208,7 +208,7 @@ export default function Moderate() {
 
           {!current && !loading && (
             <div className="rounded-md border border-slate-800 bg-slate-900 px-5 py-8 text-center">
-              <div className="text-lg font-semibold text-white">Очередь пуста</div>
+              <div className="text-lg font-semibold text-slate-100">Очередь пуста</div>
               <div className="text-sm text-slate-400 mt-2">
                 Новые рисунки появятся здесь после сохранения на странице рисования.
               </div>

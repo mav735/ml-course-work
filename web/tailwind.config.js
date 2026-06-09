@@ -6,17 +6,17 @@ export default {
     extend: {
       colors: {
         slate: {
-          50: '#fafafa',
-          100: '#ededee',
-          200: '#d6d6d8',
-          300: '#a8a8ad',
-          400: '#7d7d83',
-          500: '#5a5a60',
-          600: '#42424a',
-          700: '#2d2d33',
-          800: '#1d1d22',
-          900: '#141418',
-          950: '#0b0b0e',
+          50: 'rgb(var(--s-50) / <alpha-value>)',
+          100: 'rgb(var(--s-100) / <alpha-value>)',
+          200: 'rgb(var(--s-200) / <alpha-value>)',
+          300: 'rgb(var(--s-300) / <alpha-value>)',
+          400: 'rgb(var(--s-400) / <alpha-value>)',
+          500: 'rgb(var(--s-500) / <alpha-value>)',
+          600: 'rgb(var(--s-600) / <alpha-value>)',
+          700: 'rgb(var(--s-700) / <alpha-value>)',
+          800: 'rgb(var(--s-800) / <alpha-value>)',
+          900: 'rgb(var(--s-900) / <alpha-value>)',
+          950: 'rgb(var(--s-950) / <alpha-value>)',
         },
         indigo: {
           50: '#eef3fa',

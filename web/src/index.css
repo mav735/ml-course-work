@@ -5,6 +5,32 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --s-50: 11 11 14;
+    --s-100: 20 20 24;
+    --s-200: 29 29 34;
+    --s-300: 45 45 51;
+    --s-400: 66 66 74;
+    --s-500: 90 90 96;
+    --s-600: 125 125 131;
+    --s-700: 168 168 173;
+    --s-800: 214 214 216;
+    --s-900: 237 237 238;
+    --s-950: 250 250 250;
+  }
+  .dark {
+    --s-50: 250 250 250;
+    --s-100: 237 237 238;
+    --s-200: 214 214 216;
+    --s-300: 168 168 173;
+    --s-400: 125 125 131;
+    --s-500: 90 90 96;
+    --s-600: 66 66 74;
+    --s-700: 45 45 51;
+    --s-800: 29 29 34;
+    --s-900: 20 20 24;
+    --s-950: 11 11 14;
+  }
   body {
     @apply bg-slate-950 text-slate-100;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
@@ -71,12 +97,12 @@
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0b0e;
+  background: rgb(var(--s-950));
 }
 ::-webkit-scrollbar-thumb {
-  background: #2d2d33;
+  background: rgb(var(--s-700));
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #42424a;
+  background: rgb(var(--s-600));
 }

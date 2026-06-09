@@ -5,10 +5,12 @@ import Home from './pages/Home.jsx';
 import Draw from './pages/Draw.jsx';
 import Train from './pages/Train.jsx';
 import Moderate from './pages/Moderate.jsx';
+import ThemeToggle from './components/ThemeToggle.jsx';
 
 export default function App() {
   return (
     <div className="min-h-screen bg-slate-900">
+      <ThemeToggle />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/draw" element={<Draw />} />

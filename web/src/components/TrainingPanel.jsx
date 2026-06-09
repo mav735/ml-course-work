@@ -4,6 +4,11 @@ const CHART_W = 600;
 const CHART_H = 260;
 const PAD = { top: 20, right: 60, bottom: 40, left: 60 };
 
+function slate(n) {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(`--s-${n}`).trim();
+  return `rgb(${v})`;
+}
+
 function drawTrainingChart(canvas, history) {
   if (!canvas || history.length === 0) return;
 
@@ -13,10 +18,10 @@ function drawTrainingChart(canvas, history) {
   const plotW = CHART_W - PAD.left - PAD.right;
   const plotH = CHART_H - PAD.top - PAD.bottom;
 
-  ctx.fillStyle = '#141418';
+  ctx.fillStyle = slate(900);
   ctx.fillRect(0, 0, CHART_W, CHART_H);
 
-  ctx.strokeStyle = '#1d1d22';
+  ctx.strokeStyle = slate(800);
   ctx.lineWidth = 1;
   for (let i = 0; i <= 5; i++) {
     const y = PAD.top + (plotH * i) / 5;
@@ -77,7 +82,7 @@ function drawTrainingChart(canvas, history) {
     dot(xPos(last), yAcc(valAccs[last]), '#60a5fa');
   }
 
-  ctx.strokeStyle = '#42424a';
+  ctx.strokeStyle = slate(600);
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(PAD.left, PAD.top);
@@ -85,7 +90,7 @@ function drawTrainingChart(canvas, history) {
   ctx.lineTo(PAD.left + plotW, PAD.top + plotH);
   ctx.stroke();
 
-  ctx.fillStyle = '#a8a8ad';
+  ctx.fillStyle = slate(300);
   ctx.font = '11px monospace';
   ctx.textAlign = 'right';
   for (let i = 0; i <= 5; i++) {
@@ -107,7 +112,7 @@ function drawTrainingChart(canvas, history) {
     ctx.fillText(`${i + 1}`, xPos(i), PAD.top + plotH + 16);
   }
 
-  ctx.fillStyle = '#7d7d83';
+  ctx.fillStyle = slate(400);
   ctx.font = '11px monospace';
   ctx.save();
   ctx.translate(12, PAD.top + plotH / 2);
@@ -165,7 +170,11 @@ export default function TrainingPanel({
   const chartRef = useRef(null);
 
   useEffect(() => {
-    drawTrainingChart(chartRef.current, trainingHistory);
+    const draw = () => drawTrainingChart(chartRef.current, trainingHistory);
+    draw();
+    const observer = new MutationObserver(draw);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
   }, [trainingHistory]);
 
   const lastEntry = trainingHistory[trainingHistory.length - 1];
